@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/schedule-content.css">
+    <title>Livestreaming</title>
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/side-bar.css" />
+    <link rel="stylesheet" href="assets/css/livestream.css" rel="stylesheet" />
+
+    <!-- These 3 links are only for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header>
+        <!-- navbar -->
+        <nav class="navbar">
+            <div class="logo_item">
+            <i class="bx bx-menu" id="sidebarOpen"></i>
+            <img src="assets/img/logo.png" alt="phHits Logo"></i>phHits
+            </div>
+            <div class="hdr-left_Container">
+            <div>
+                <h4 id="userName">Melody Ang</h4>
+                <p id="datetime"></p>
+            </div>
+            <button id="signOut"> <img src="./assets/img/logout.png" alt="SignOut Button"></button>
+        </div>
+        </nav>
+    
+        <!-- sidebar -->
+        <nav class="sidebar">
+            <div class="menu_content">
+            <ul class="menu_items">
+                <div class="menu_title menu_dahsboard"></div>
+                <li class="item">
+                <a id="dashboardLink" href="dashboard.html" class="nav_link submenu_item">
+                    <span class="navlink_icon">
+                    <i class="bx bx-home-alt"></i>
+                    </span>
+                    <span class="navlink">Home</span>
+                </a>
+                </li>
+            </ul>
+        
+            <ul class="menu_items">
+                <div class="menu_title menu_schedule"></div>           
+                <li class="item">
+                <a id="scheduleContentLink" href="schedule-content.html" class="nav_link" onclick="scheduleContent()">
+                    <span class="navlink_icon">
+                    <i class="bx bx-cloud-upload"></i>
+                    </span>
+                    <span class="navlink">Upload Content</span>
+                </a>
+                </li>
+            </ul>
+        
+            <ul class="menu_items">
+                <div class="menu_title menu_livestream"></div>
+                <li class="item">
+                <a id="livestreamLink" href="livestream.html" class="nav_link">
+                    <span class="navlink_icon">
+                    <i class='bx bxs-video-recording'></i>
+                    </span>
+                    <span class="navlink">Livestream</span>
+                </a>
+                </li>
+            </ul>
+        
+            <ul class="menu_items">
+                <div class="menu_title menu_history"></div>           
+                <li class="item">
+                <a id="historyLink" href="history.html" class="nav_link">
+                    <span class="navlink_icon">
+                    <i class='bx bx-history' ></i>
+                    </span>
+                    <span class="navlink">Recorded Streams</span>
+                </a>
+                </li>
+            </ul>
+        
+            <!-- Sidebar Open / Close -->
+            <div class="bottom_content">
+                <div class="bottom expand_sidebar">
+                <span> Expand</span>
+                <i class='bx bx-log-in' ></i>
+                </div>
+                <div class="bottom collapse_sidebar">
+                <span> Collapse</span>
+                <i class='bx bx-log-out'></i>
+                </div>
+            </div>
+            <script src="assets/js/side-bar.js"></script>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-title">
+        <h1>Live Streaming</h1>
+        <p>Start Livestreaming.</p>
+    </div>
+
+    <div class="container show-controls">
+        <div class="wrapper">
+            <div class="video-timeline">
+                <div class="progress-area">
+                    <span>00:00</span>
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            <ul class="video-controls">
+                <li class="options left">
+                    <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
+                    <input type="range" min="0" max="1" step="any">
+                    <div class="video-timer">
+                        <p class="current-time">00:00</p>
+                        <p class="separator"> / </p>
+                        <p class="video-duration">00:00</p>
+                    </div>
+                </li>
+                <li class="options center">
+                    <button class="skip-backward"><i class="fas fa-backward"></i></button>
+                    <button class="play-pause"><i class="fas fa-play"></i></button>
+                    <button class="skip-forward"><i class="fas fa-forward"></i></button>
+                </li>
+                <li class="options right">
+                    <div class="playback-content">
+                        <button class="playback-speed"><span class="material-symbols-rounded">slow_motion_video</span></button>
+                        <ul class="speed-options">
+                            <li data-speed="2">2x</li>
+                            <li data-speed="1.5">1.5x</li>
+                            <li data-speed="1" class="active">Normal</li>
+                            <li data-speed="0.75">0.75x</li>
+                            <li data-speed="0.5">0.5x</li>
+                        </ul>
+                    </div>
+                    <button class="pic-in-pic"><span class="material-icons">picture_in_picture_alt</span></button>
+                    <button class="fullscreen"><i class="fa-solid fa-expand"></i></button>
+                </li>
+            </ul>
+        </div>
+        <video src="mp4"></video>
+    </div>
+
+    <div class="livestream-container">
+        <div class="form-groups">
+            <label for="titleStream">Title (Max 60 characters):</label>
+            <input type="text" id="titleStream" name="titleStream" maxlength="60">
+            <p id="countTitle">0 characters</p>
+        </div>
+    
+        <div class="form-groups">
+            <label for="descStream">Short Description (Max 5000 characters):</label>
+            <textarea id="descStream" name="descStream" maxlength="5000"></textarea>
+            <p id="countDesc">0 characters</p>
+        </div>
+    
+        <button type="button" onclick="scheduleContent()">Schedule</button>
+    </div>
+    
+    <script src="assets/js/livestream.js"></script>
+    <script>
+        
+        // Character count for title
+        document.getElementById("titleStream").addEventListener("input", function () {
+            const titleCount = document.getElementById("countTitle");
+            titleCount.textContent = this.value.length + " characters";
+        });
+    
+        // Character count for description
+        document.getElementById("descStream").addEventListener("input", function () {
+            const descriptionCount = document.getElementById("countDesc");
+            descriptionCount.textContent = this.value.length + " characters";
+        });
+    </script>
+</body>
+</html>

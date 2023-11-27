@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/schedule-content.css">
+    <title>Schedule Content</title>
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/side-bar.css" />
+</head>
+<body>
+    <header>
+        <!-- navbar -->
+        <nav class="navbar">
+            <div class="logo_item">
+            <i class="bx bx-menu" id="sidebarOpen"></i>
+            <img src="assets/img/logo.png" alt="phHits Logo"></i>phHits
+            </div>
+            <div class="hdr-left_Container">
+            <div>
+                <h4 id="userName">Melody Ang</h4>
+                <p id="datetime"></p>
+            </div>
+            <button id="signOut"> <img src="./assets/img/logout.png" alt="SignOut Button"></button>
+        </div>
+        </nav>
+
+        <!-- sidebar -->
+        <nav class="sidebar">
+            <div class="menu_content">
+            <ul class="menu_items">
+                <div class="menu_title menu_dahsboard"></div>
+                <li class="item">
+                <a id="dashboardLink" href="dashboard.html" class="nav_link submenu_item">
+                    <span class="navlink_icon">
+                    <i class="bx bx-home-alt"></i>
+                    </span>
+                    <span class="navlink">Home</span>
+                </a>
+                </li>
+            </ul>
+        
+            <ul class="menu_items">
+                <div class="menu_title menu_schedule"></div>           
+                <li class="item">
+                <a id="scheduleContentLink" href="schedule-content.html" class="nav_link" onclick="scheduleContent()">
+                    <span class="navlink_icon">
+                    <i class="bx bx-cloud-upload"></i>
+                    </span>
+                    <span class="navlink">Upload Content</span>
+                </a>
+                </li>
+            </ul>
+        
+            <ul class="menu_items">
+                <div class="menu_title menu_livestream"></div>
+                <li class="item">
+                <a id="livestreamLink" href="livestream.html" class="nav_link">
+                    <span class="navlink_icon">
+                    <i class='bx bxs-video-recording'></i>
+                    </span>
+                    <span class="navlink">Livestream</span>
+                </a>
+                </li>
+            </ul>
+        
+            <ul class="menu_items">
+                <div class="menu_title menu_history"></div>           
+                <li class="item">
+                <a id="historyLink" href="history.html" class="nav_link">
+                    <span class="navlink_icon">
+                    <i class='bx bx-history' ></i>
+                    </span>
+                    <span class="navlink">Recorded Streams</span>
+                </a>
+                </li>
+            </ul>
+        
+            <!-- Sidebar Open / Close -->
+            <div class="bottom_content">
+                <div class="bottom expand_sidebar">
+                <span> Expand</span>
+                <i class='bx bx-log-in' ></i>
+                </div>
+                <div class="bottom collapse_sidebar">
+                <span> Collapse</span>
+                <i class='bx bx-log-out'></i>
+                </div>
+            </div>
+            <script src="assets/js/side-bar.js"></script>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-title">
+        <h1>Schedule Content</h1>
+        <p>Upload a file and choose a specific stream type.</p>
+    </div>
+
+    <div class="content-managers-container">
+        <h1>Streaming Schedule</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Uploader</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tablebody" class="draggable">
+                <tr>
+                    <td>24/11/2023</td>
+                    <td>1:00 PM</td>
+                    <td>5:00</td>
+                    <td>Podcast</td>
+                    <td> <!--Need this to be changed if you want xhange the status-->
+                        <div class="status-indicator queued"></div>
+                        <span class="status-text">Queued</span>
+                    </td>
+                    <td>John Doe</td>
+                    <td><button class="btn btn-danger" onclick="deleteRow(this)">Delete</button></td>
+                    <td class="drag-icon" style="cursor: grab;">≡</td> <!-- Drag icon column -->
+                </tr>
+                <tr>
+                    <td>24/11/2023</td>
+                    <td>2:00 PM</td>
+                    <td>24:00</td>
+                    <td>Music Video</td>
+                    <td>
+                        <div class="status-indicator queued"></div>
+                        <span class="status-text">Queued</span>
+                    </td>
+                    <td>John Doe</td>
+                    <td><button class="btn btn-danger" onclick="deleteRow(this)">Delete</button></td>
+                    <td class="drag-icon" style="cursor: grab;">≡</td> <!-- Drag icon column -->
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-reschedule-container">
+        <h1>Reschedule Uploaded Content</h1>
+
+        <form id="rescheduleForm">
+            <div class="radio-group">
+                <label for="genre">Choose Genre:</label>
+                <div class="radio-buttons">
+                    <input type="radio" id="musicVideo" name="genre" value="Music Video">
+                    <label for="musicVideo">Music Video</label>
+                    <input type="radio" id="podcast" name="genre" value="Podcast">
+                    <label for="podcast">Podcast</label>
+                    <input type="radio" id="advertisement" name="genre" value="Advertisement">
+                    <label for="advertisement">Advertisement</label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="currentDate">Current Date:</label>
+                <input type="date" id="currentDate" name="currentDate">
+            </div>
+    
+            <div class="form-group">
+                <label for="contentFile">Choose File:</label>
+                <input type="file" id="contentFile" name="contentFile" accept=".mp3, .mp4" onchange="handleFileSelect()">
+                <p id="durationDisplay">Duration: Not available</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="title">Title (Max 60 characters):</label>
+                <input type="text" id="title" name="title" maxlength="60">
+                <p id="titleCount">0 characters</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="description">Short Description (Max 5000 characters):</label>
+                <textarea id="description" name="description" maxlength="5000"></textarea>
+                <p id="descriptionCount">0 characters</p>
+            </div>
+    
+            <button type="button" onclick="scheduleContent()">Schedule</button>
+        </form>
+    </div>
+
+    <div class="schedule-stream-container">
+        <h1>Schedule Stream</h1>
+        <form id="scheduleForm">
+            <div class="radio-group">
+                <label for="genre">Choose Genre:</label>
+                <div class="radio-buttons">
+                    <input type="radio" id="musicVideo" name="genre" value="Music Video">
+                    <label for="musicVideo">Music Video</label>
+                    <input type="radio" id="podcast" name="genre" value="Podcast">
+                    <label for="podcast">Podcast</label>
+                    <input type="radio" id="advertisement" name="genre" value="Advertisement">
+                    <label for="advertisement">Advertisement</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="currentDate">Current Date:</label>
+                <input type="date" id="currentDate" name="currentDate">
+            </div>
+    
+            <div class="form-group">
+                <label for="ContentFile">Upload File:</label>
+                <input type="file" id="ContentFile" name="ContentFile" accept=".mp3, .mp4" onchange="handleFileSelect()">
+                <p id="DurationDisplay">Duration: Not available</p>
+            </div>
+
+            <div class="form-group">
+                <label for="Title">Title (Max 60 characters):</label>
+                <input type="Text" id="Title" name="Title" maxlength="60">
+                <p id="TitleCount">0 characters</p>
+            </div>
+    
+            <div class="form-group">
+                <label for="Description">Short Description (Max 5000 characters):</label>
+                <textarea id="Description" name="Description" maxlength="5000"></textarea>
+                <p id="DescriptionCount">0 characters</p>
+            </div>
+    
+            <button type="button" onclick="scheduleContent()">Schedule</button>
+        </form>
+    </div>
+    
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include SortableJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="assets/js/schedule-content.js"></script>
+</body>
+</html>

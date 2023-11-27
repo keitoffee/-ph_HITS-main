@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>phHits - Admin</title>
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+  <header>
+    <a href="index.html" class="logo">
+        <img src="assets/img/logo.png" alt="phHITS Logo">
+        <span>phHITS</span>
+    </a>
+
+    <div class="hdr-left_Container">
+        <div>
+            <h4 id="userName">Melody Ang</h4>
+            <p id="datetime"></p>
+        </div>
+        <button id="signOut"> <img src="./assets/img/logout.png" alt="SignOut Button"></button>
+    </div>
+    
+    
+
+  </header><!-- End Header -->
+  <div>
+    <p>hello</p>
+  </div>
+
+
+    <footer>
+        <div class="footer-icons">
+            <div class="social-icon-container">
+                <!-- Replace these links with your actual social media profile links and icons -->
+                <a href="#"><img src="assets/img/facebook-logo.png" alt="Social Icon 1"></a>
+            </div>
+    
+            <div class="social-icon-container">
+                <!-- Replace these links with your actual social media profile links and icons -->
+                <a href="#"><img src="assets/img/instagram-logo.png" alt="Social Icon 2"></a>
+            </div>
+    
+            <div class="social-icon-container">
+                <!-- Replace these links with your actual social media profile links and icons -->
+                <a href="#"><img src="assets/img/twitter-logo.png" alt="Social Icon 3"></a>
+            </div>
+        </div>
+    
+        <div class="footer-text">
+            Team phHITS - 9481AB - IT312/312L - 1st Semester AY 2023 - 2024<br>
+            IT Department<br>
+            School of Accountancy, Management, Computing and Information Studies<br>
+            Saint Louis University
+        </div>
+    </footer>
+
+    
+</body>
+<script>
+  function updateDateTime() {
+    // Get the current date and time
+    var currentDateTime = new Date();
+
+    // Format the date
+    var formattedDateTime = currentDateTime.toLocaleString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    });
+
+    // Display the formatted date on the webpage
+    document.getElementById('datetime').textContent = formattedDateTime;
+  }
+
+  // Update the date every second (1000 milliseconds)
+  setInterval(updateDateTime, 1000);
+
+  // Initial call to display the date immediately
+  updateDateTime();
+
+</script>
+</html>
